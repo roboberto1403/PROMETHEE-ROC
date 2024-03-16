@@ -4,7 +4,7 @@ def calcular_indices_preferencia(alternativa1, alternativa2, criterios, alternat
         indice = 0
         if dados[alternativas.index(alternativa1)][j] > dados[alternativas.index(alternativa2)][j] > 0:
             indice = 1 - (dados[alternativas.index(alternativa2)][j] / dados[alternativas.index(alternativa1)][j])
-        elif dados[alternativas.index(alternativa1)][j] > dados[alternativas.index(alternativa2)][j]:
+        elif dados[alternativas.index(alternativa1)][j] <= dados[alternativas.index(alternativa2)][j]:
             indice = 0
         elif dados[alternativas.index(alternativa2)][j] == 0:
             indice = 1
