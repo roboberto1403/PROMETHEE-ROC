@@ -1,4 +1,4 @@
-from promethee import calcular_fluxos, ordenar_alternativas
+from promethee import calcular_fluxos, classificacao_total, classificacao_parcial
 
 def main(criterios, alternativas, dados):
     criterios_com_pesos = []
@@ -9,15 +9,24 @@ def main(criterios, alternativas, dados):
     criterios_com_pesos.reverse()
 
     fluxos_totais, fluxos_positivos, fluxos_negativos, indices = calcular_fluxos(alternativas, criterios_com_pesos, dados)
-    alternativas_ordenadas = ordenar_alternativas(alternativas, fluxos_totais)
+    classificacoes = classificacao_parcial(fluxos_positivos, fluxos_negativos, alternativas)
+    alternativas_ordenadas = classificacao_total(fluxos_totais)
     print(criterios_com_pesos)
     print(fluxos_positivos)
     print(fluxos_negativos)
     print(indices)
 
-    print("\nRanking das Alternativas:")
-    for i, (alternativa, fluxo) in enumerate(alternativas_ordenadas, 1):
-        print(f"{i}. {alternativa}: {fluxo}")
+    print("\nClassificação Total:")
+    rank = 1
+    for i, (alternativa, fluxo) in enumerate(alternativas_ordenadas):
+        if i > 0 and fluxo < alternativas_ordenadas[i - 1][1]:
+            rank = i + 1
+        print(f"{rank}. {alternativa}: {fluxo}")
+
+    print("\nClassificação Parcial:")
+    for i in classificacoes:
+        print(i)
+
 
 c = ["c1", "c3", "c2"]
 a = ["a1", "a2", "a3"]
