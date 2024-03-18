@@ -52,10 +52,12 @@ def classificacao_parcial(todos_fluxos_positivos, todos_fluxos_negativos, altern
                 (todos_fluxos_positivos[par[0]] > todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] == todos_fluxos_negativos[par[1]]):
             classificacoes.append(f"{par[0]} é preferível a {par[1]}")
         elif todos_fluxos_positivos[par[0]] == todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] == todos_fluxos_negativos[par[1]]:
-            classificacoes.append(f"{par[0]} é indiferente a {par[1]}")
+            classificacoes.append(f"{par[0]} e {par[1]} são indiferentes")
+            pares.remove((par[1], par[0]))
         elif (todos_fluxos_positivos[par[0]] > todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] > todos_fluxos_negativos[par[1]]) or \
                 (todos_fluxos_positivos[par[0]] < todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] < todos_fluxos_negativos[par[1]]):
-            classificacoes.append(f"{par[0]} é incomparável a {par[1]}")
+            classificacoes.append(f"{par[0]} e {par[1]} são incomparáveis")
+            pares.remove((par[1], par[0]))
     return classificacoes
 
 def classificacao_total(fluxos_totais):
