@@ -1,1 +1,2 @@
-from .main import run_promethee_roc
+from promethee_roc.algoritmo.main import run_promethee_roc
+
