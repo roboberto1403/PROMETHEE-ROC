@@ -11,11 +11,11 @@ Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em 
 1. Baixe a biblioteca
 ```bash
   pip install promethee-ROC
-
+ ```
 2. Importe a função de execução
  ```bash
    from promethee_ROC import run_promethee_roc
-  
+   ```
 3. Siga as instruções, após isso, irá ter como retorno as Classificações Parcial (Promethee I) e Total (Promethee II)
 
 # Equipe
