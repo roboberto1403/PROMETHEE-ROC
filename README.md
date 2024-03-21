@@ -15,12 +15,12 @@ Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em 
 2. Importe a função de execução
  ```bash
    from promethee_ROC import run_promethee_roc
-   ```
+  
 3. Siga as instruções, após isso, irá ter como retorno as Classificações Parcial (Promethee I) e Total (Promethee II)
 
 # Equipe
-* [Luana Cristina de Carvalho Brito](lccb@cin.ufpe.br)
-* [Gabrielle Almeida de Oliveira](gao2@cin.ufpe.br)
-* [Luiz Roberto Bezerra Ferreira](lrbf@cin.ufpe.br)
-* [Penélope Araújo](pmpa@cin.ufpe.br)
-* [Joao Felipe Barbosa da Silva](jfbs@cin.ufpe.br)
+* Luana Cristina de Carvalho Brito <lccb@cin.ufpe.br>
+* Gabrielle Almeida de Oliveira <gao2@cin.ufpe.br>
+* Luiz Roberto Bezerra Ferreira <rbf@cin.ufpe.br>
+* Penélope Araújo <pmpa@cin.ufpe.br>
+* Joao Felipe Barbosa da Silva <jfbs@cin.ufpe.br>
