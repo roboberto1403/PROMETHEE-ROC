@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 def print_resultado(nodes, data):
     print_graph_classificacao_total(nodes)
-    print_table_classificacao_parcial(data)
+    print_table_classificacao_parcial(data, "Classificação Parcial")
     plt.tight_layout()  # Ajusta automaticamente o layout para evitar sobreposição
     plt.show()
 
-def print_graph_classificacao_total(nodes, title):
+def print_graph_classificacao_total(nodes):
     num_nodes = len(nodes)
 
     x = np.ones(num_nodes)
@@ -46,7 +46,7 @@ def print_table_classificacao_parcial(data, title):
     ax.axis('off')
 
     table = ax.table(cellText=[[row] for row in data],
-                     colLabels=[title if title else 'Tabela'],
+                     colLabels=[title],
                      loc='center',
                      cellLoc='center')
 
@@ -54,4 +54,4 @@ def print_table_classificacao_parcial(data, title):
     table.set_fontsize(12)
     table.scale(1, 1.5)
 
-    plt.title("Classificação Parcial")
+    plt.title(title)
