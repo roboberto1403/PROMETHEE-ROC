@@ -4,7 +4,7 @@
 Em alguns casos de tomada de decisão de problemas de múltiplos critérios há a dificuldade ou impossibilidade de definir os valores para os pesos dos diferentes critérios. Para esses casos, pode-se usar a escala de importância dos critérios para se definir uma ordem de prioridade. DE ALMEIDA FILHO et al. (2018) conclui como o método Rank Order Centroid é o mais robusto entre os mais populares (EW, RS, RR e ROC) para definição de pesos substitutos em problema de tomada de decição multicritéirios. 
 
 # Sobre o projeto
-Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em Python e pode ser acessado [aqui](https://pypi.org/project/promethee-ROC/0.1/).
+Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em Python e pode ser acessado como uma biblioteca [aqui](https://pypi.org/project/promethee-ROC/0.1/).
 
 # Como utilizar
 
