@@ -12,7 +12,7 @@ Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em 
 ```bash
   pip install promethee-ROC
  ```
-2. Importe a função de execução
+2. Importe a seguinte função e a execute
  ```bash
    from promethee_ROC import run_promethee_roc
    ```
