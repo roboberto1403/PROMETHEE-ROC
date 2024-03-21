@@ -1,5 +1,5 @@
 from promethee import calcular_fluxos, classificacao_total, classificacao_parcial, roc
-import tkinter as tk
+from tkinter import *
 from tkinter import ttk
 
 def promethee_roc(criterios, alternativas, dados):
@@ -57,7 +57,7 @@ def atualizar_tela_inserir_valores(alternativas, criterios):
 
         entrada_frames.append(entradas_alternativa)
 
-    botao_enviarDados = ttk.Button(janela, text="Enviar valores",
+    botao_enviarDados = ttk.Button(janela_2, text="Enviar valores",
                                    command=lambda: salvar_entradas(alternativas, criterios))
     botao_enviarDados.pack(pady=10)
 
@@ -78,32 +78,49 @@ def salvar_entradas(alternativas, criterios):
     promethee_roc(criterios, alternativas, valores_entradas)
 
 # INTERFACE PRINCIPAL
-janela = tk.Tk()
+janela = Tk()
 janela.title("PROMETHEE-ROC")
 
+#CRIACAO CANVAS
+canvas = Canvas(janela)
+canvas.pack(side=LEFT, fill=BOTH, expand=1)
+
+#CRIACAO SCROLLBAR
+scrollbar = ttk.Scrollbar(janela, orient=VERTICAL, command=canvas.yview)
+scrollbar.pack(side=RIGHT, fill=Y)
+
+#CONFIGURACAO CANVAS
+canvas.configure(yscrollcommand=scrollbar.set)
+canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+
+#SEGUNDO FRAME
+janela_2 = Frame(canvas)
+
+#ADICIONAR SEGUNDO FRAME AO CANVAS
+canvas.create_window((0,0), window=janela_2, anchor="nw")
+
 frame_criterios = ttk.Frame(janela)
-frame_criterios.pack(pady=10)
-label_criterios = tk.Label(frame_criterios, text="Informe os critérios\nseparados por vírgula\nem ordem de preferência\n(do mais importante\nao menos importante)")
-label_criterios.pack(side=tk.LEFT, padx=5, pady=5)
+frame_criterios.pack(fill=BOTH, expand=1)
+label_criterios = Label(frame_criterios, text="Informe os critérios\nseparados por vírgula\nem ordem de preferência\n(do mais importante\nao menos importante)")
+label_criterios.pack(side=LEFT, padx=5, pady=5)
 entry_criterios = ttk.Entry(frame_criterios)
-entry_criterios.pack(side=tk.LEFT, padx=5, pady=5)
+entry_criterios.pack(side=LEFT, padx=5, pady=5)
 
 frame_alternativas = ttk.Frame(janela)
-frame_alternativas.pack(pady=10)
-label_alternativas = tk.Label(frame_alternativas, text="Informe as alternativas\n(separadas por vírgula)")
-label_alternativas.pack(side=tk.LEFT, padx=5, pady=5)
+frame_alternativas.pack(fill=BOTH, expand=1)
+label_alternativas = Label(frame_alternativas, text="Informe as alternativas\n(separadas por vírgula)")
+label_alternativas.pack(side=LEFT, padx=5, pady=5)
 entry_alternativas = ttk.Entry(frame_alternativas)
-entry_alternativas.pack(side=tk.LEFT, padx=5, pady=5)
+entry_alternativas.pack(side=LEFT, padx=5, pady=5)
 
 botao_enviar = ttk.Button(janela, text="Enviar", command=enviar_criterios_alternativas)
 botao_enviar.pack(pady=10)
 
-frame = ttk.Frame(janela)
+frame = ttk.Frame(janela_2)
 frame.pack(pady=10)
-
 
 entrada_frames = []
 
-janela.mainloop()
-
+def run_promethee_roc():
+    janela.mainloop()
 

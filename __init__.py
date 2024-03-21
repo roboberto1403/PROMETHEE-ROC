@@ -1,1 +1,1 @@
-from .main import promethee_roc
+from .main import run_promethee_roc
