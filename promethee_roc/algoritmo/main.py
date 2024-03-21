@@ -1,14 +1,13 @@
 from promethee import calcular_fluxos, classificacao_total, classificacao_parcial, roc
 from tkinter import *
 from tkinter import ttk
-from output import print_graph
+from output import print_resultado
 
 def promethee_roc(criterios, alternativas, dados):
     criterios_com_pesos = roc(criterios)
     fluxos_totais, fluxos_positivos, fluxos_negativos, indices = calcular_fluxos(alternativas, criterios_com_pesos, dados)
     classificacoes = classificacao_parcial(fluxos_positivos, fluxos_negativos, alternativas)
     alternativas_ordenadas = classificacao_total(fluxos_totais)
-
 
     print("\nClassificação Parcial:")
     for i in classificacoes:
@@ -22,7 +21,7 @@ def promethee_roc(criterios, alternativas, dados):
             rank = i + 1
         print(f"{rank}. {alternativa}: {fluxo}")
         classificacao_total_ordenada.append(alternativa)
-    print_graph(classificacao_total_ordenada)
+    print_resultado(classificacao_total_ordenada, classificacoes)
 
 
 def enviar_criterios_alternativas():
@@ -128,4 +127,3 @@ entrada_frames = []
 
 def run_promethee_roc():
     janela.mainloop()
-
