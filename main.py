@@ -75,7 +75,7 @@ def salvar_entradas(alternativas, criterios):
     print(f"Dados para cada critério: {valores_entradas}")
 
     # chamada do codigo do promethee
-    promethee_roc(alternativas, criterios, valores_entradas)
+    promethee_roc(criterios, alternativas, valores_entradas)
 
 # INTERFACE PRINCIPAL
 janela = tk.Tk()
