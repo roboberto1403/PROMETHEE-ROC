@@ -1,7 +1,7 @@
-from promethee import calcular_fluxos, classificacao_total, classificacao_parcial, roc
+from promethee_roc.algoritmo.promethee import calcular_fluxos, classificacao_total, classificacao_parcial, roc
 from tkinter import *
 from tkinter import ttk
-from output import print_resultado
+from promethee_roc.algoritmo.output import print_resultado
 
 def promethee_roc(criterios, alternativas, dados):
     criterios_com_pesos = roc(criterios)
