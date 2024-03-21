@@ -2,6 +2,7 @@ from promethee import calcular_fluxos, classificacao_total, classificacao_parcia
 import tkinter as tk
 from tkinter import ttk
 
+
 def promethee_roc(alternativas, criterios, dados):
     # ROC
     criterios_com_pesos = []
@@ -30,6 +31,7 @@ def promethee_roc(alternativas, criterios, dados):
     print("\nClassificação Parcial:")
     for i in classificacoes:
         print(i)
+
 
 def enviar_criterios_alternativas():
     todos_criterios = entry_criterios.get()

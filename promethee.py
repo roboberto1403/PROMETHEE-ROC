@@ -2,6 +2,7 @@ def calcular_indices_preferencia(alternativa1, alternativa2, criterios, alternat
     indice_preferencia = 0
     for j in range(len(criterios)):
         indice = 0
+
         valor_alternativa1 = float(dados[alternativas.index(alternativa1)][j])
         valor_alternativa2 = float(dados[alternativas.index(alternativa2)][j])
 
