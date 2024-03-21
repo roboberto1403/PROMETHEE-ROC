@@ -1,6 +1,7 @@
 from promethee import calcular_fluxos, classificacao_total, classificacao_parcial, roc
 from tkinter import *
 from tkinter import ttk
+from output import print_graph
 
 def promethee_roc(criterios, alternativas, dados):
     criterios_com_pesos = roc(criterios)
@@ -15,10 +16,14 @@ def promethee_roc(criterios, alternativas, dados):
 
     print("\nClassificação Total:")
     rank = 1
+    classificacao_total_ordenada = []
     for i, (alternativa, fluxo) in enumerate(alternativas_ordenadas):
         if i > 0 and fluxo < alternativas_ordenadas[i - 1][1]:
             rank = i + 1
         print(f"{rank}. {alternativa}: {fluxo}")
+        classificacao_total_ordenada.append(alternativa)
+    print_graph(classificacao_total_ordenada)
+
 
 def enviar_criterios_alternativas():
     todos_criterios = entry_criterios.get()
