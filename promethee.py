@@ -14,7 +14,6 @@ def calcular_indices_preferencia(alternativa1, alternativa2, criterios, alternat
         indice_preferencia += indice * criterios[j][1]
     return indice_preferencia
 
-
 def calcular_fluxos(alternativas, criterios, dados):
     pares = [(a, b) for a in alternativas for b in alternativas if a != b]
     todos_indices = {}
@@ -31,21 +30,38 @@ def calcular_fluxos(alternativas, criterios, dados):
             if par.startswith(f"Indice({alternativa}"):
                 soma_indice_positivo += indice
         fluxo_positivo = 1 / (len(alternativas) - 1) * soma_indice_positivo
-        todos_fluxos_positivos[f"Fluxo positivo {alternativa}"] = fluxo_positivo
+        todos_fluxos_positivos[alternativa] = fluxo_positivo
 
         soma_indice_negativo = 0
         for par, indice in todos_indices.items():
             if par.endswith(f"{alternativa})"):
                 soma_indice_negativo += indice
         fluxo_negativo = 1 / (len(alternativas) - 1) * soma_indice_negativo
-        todos_fluxos_negativos[f"Fluxo negativo {alternativa}"] = fluxo_negativo
+        todos_fluxos_negativos[alternativa] = fluxo_negativo
 
     todos_fluxos_totais = {}
     for alternativa in alternativas:
-        todos_fluxos_totais[f"Fluxo total {alternativa}"] = todos_fluxos_positivos[f"Fluxo positivo {alternativa}"] - todos_fluxos_negativos[f"Fluxo negativo {alternativa}"]
+        todos_fluxos_totais[alternativa] = todos_fluxos_positivos[alternativa] - todos_fluxos_negativos[alternativa]
 
     return todos_fluxos_totais, todos_fluxos_positivos, todos_fluxos_negativos, todos_indices
 
-def ordenar_alternativas(alternativas, fluxos_totais):
+def classificacao_parcial(todos_fluxos_positivos, todos_fluxos_negativos, alternativas):
+    pares = [(a, b) for a in alternativas for b in alternativas if a != b]
+    classificacoes = []
+    for par in pares:
+        if (todos_fluxos_positivos[par[0]] > todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] < todos_fluxos_negativos[par[1]]) or \
+                (todos_fluxos_positivos[par[0]] == todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] < todos_fluxos_negativos[par[1]]) or \
+                (todos_fluxos_positivos[par[0]] > todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] == todos_fluxos_negativos[par[1]]):
+            classificacoes.append(f"{par[0]} é preferível a {par[1]}")
+        elif todos_fluxos_positivos[par[0]] == todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] == todos_fluxos_negativos[par[1]]:
+            classificacoes.append(f"{par[0]} e {par[1]} são indiferentes")
+            pares.remove((par[1], par[0]))
+        elif (todos_fluxos_positivos[par[0]] > todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] > todos_fluxos_negativos[par[1]]) or \
+                (todos_fluxos_positivos[par[0]] < todos_fluxos_positivos[par[1]] and todos_fluxos_negativos[par[0]] < todos_fluxos_negativos[par[1]]):
+            classificacoes.append(f"{par[0]} e {par[1]} são incomparáveis")
+            pares.remove((par[1], par[0]))
+    return classificacoes
+
+def classificacao_total(fluxos_totais):
     alternativas_ordenadas = sorted(fluxos_totais.items(), key=lambda x: x[1], reverse=True)
     return alternativas_ordenadas
