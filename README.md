@@ -22,6 +22,9 @@ Foi implementado o método Promethee (I e II) utilizando do procedimento ROC em 
    ```
 5. Siga as instruções, após isso, irá ter como retorno as Classificações Parcial (Promethee I) e Total (Promethee II) (BRANS; MARESCHAL, 2005).
 
+# Limitações
+Os índices de preferência são calculados utilizando uma função limiar e a lógica do algoritmo apenas suporta critérios de maximazação (quanto maior, melhor), de forma que, caso o usuário deseje utilizar de critério de minimização, deverá manualmente normalizar os valores (multiplicando todos por 1/x*2, sendo x o valor do critério).
+
 # Equipe
 * Luana Cristina de Carvalho Brito <lccb@cin.ufpe.br>
 * Gabrielle Almeida de Oliveira <gao2@cin.ufpe.br>
