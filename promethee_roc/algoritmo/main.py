@@ -127,3 +127,4 @@ entrada_frames = []
 
 def run_promethee_roc():
     janela.mainloop()
+run_promethee_roc()

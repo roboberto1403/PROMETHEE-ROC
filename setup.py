@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='promethee_ROC',
-    version='0.4',
+    version='0.5',
     packages=find_packages(),
     author='Luiz Roberto, Penélope Araújo, Luana Cristina, Gabrielle Almeida, João Felipe',
     author_email='lrbf@cin.ufpe.br, pmpa@cin.ufpe.br, lccb@cin.ufpe.br, gao2@cin.ufpe.br, jfbs@cin.ufpe.br',

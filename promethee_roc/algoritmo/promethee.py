@@ -8,7 +8,7 @@ def roc(criterios):
     criterios_com_pesos.reverse() #Inverte para caso de print para manter a ordem de importância dos critérios
 
     return criterios_com_pesos
-#Função para calcular os índices de preferência entre cada tupla de alternativas a partir dos valores de cada uma para cada critério
+#Função para calcular os índices de preferência entre cada tupla de alternativas utilizando a função limiar
 def calcular_indices_preferencia(alternativa1, alternativa2, criterios, alternativas, dados):
     indice_preferencia = 0
     for j in range(len(criterios)):
@@ -17,12 +17,10 @@ def calcular_indices_preferencia(alternativa1, alternativa2, criterios, alternat
         valor_alternativa1 = float(dados[alternativas.index(alternativa1)][j])
         valor_alternativa2 = float(dados[alternativas.index(alternativa2)][j])
 
-        if valor_alternativa1 > valor_alternativa2 > 0: #Caso o valor de um critério da alternativa 1 for maior que o da alternativa2 para o mesmo critério, a primeira é preferida em relação a segunda em um grau que é calculado nessa linha
-            indice = 1 - (valor_alternativa2 / valor_alternativa1) #Calcula o complemento do grau de proximidade dos dois valores, ou seja, o grau de superação de um sobre o outro
-        elif valor_alternativa1 <= valor_alternativa2:
-            indice = 0 #Atribui 0 para caso o valor de um critério da alternativa 1 for menor que o da alternativa 2, ou seja, não há preferência neste critério
-        elif valor_alternativa2 == 0:
+        if valor_alternativa1 > valor_alternativa2: #Caso o valor de um critério da alternativa 1 for maior que o da alternativa2 para o mesmo critério, a primeira é preferida em relação a segunda em um grau que é calculado nessa linha
             indice = 1
+        else:
+            indice = 0 #Atribui 0 para caso o valor de um critério da alternativa 1 for menor que o da alternativa 2, ou seja, não há preferência neste critério
         indice_preferencia += indice * criterios[j][1] #Leva em conta o peso de cada critério
 
     return indice_preferencia
